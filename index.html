@@ -1,0 +1,634 @@
+<title>Nẻo Việt Travel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #ECE1C7;
+    --surface: #F7F1DE;
+    --ink: #16262A;
+    --ink-soft: #48595B;
+    --ink-faint: #7D8B84;
+    --stamp: #3B6E3A;
+    --stamp-ink: #EAF3E4;
+    --teal: #1B6F68;
+    --line: rgba(22,38,42,0.30);
+    --line-soft: rgba(22,38,42,0.14);
+    --shadow: 0 16px 34px -22px rgba(22,38,42,0.6);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper: #10191B;
+      --surface: #172224;
+      --ink: #ECE1C7;
+      --ink-soft: #B7C0B8;
+      --ink-faint: #74827A;
+      --stamp: #7FBF6A;
+      --stamp-ink: #16240E;
+      --teal: #57C6BA;
+      --line: rgba(236,225,199,0.28);
+      --line-soft: rgba(236,225,199,0.13);
+      --shadow: 0 16px 34px -22px rgba(0,0,0,0.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper: #10191B;
+    --surface: #172224;
+    --ink: #ECE1C7;
+    --ink-soft: #B7C0B8;
+    --ink-faint: #74827A;
+    --stamp: #7FBF6A;
+    --stamp-ink: #16240E;
+    --teal: #57C6BA;
+    --line: rgba(236,225,199,0.28);
+    --line-soft: rgba(236,225,199,0.13);
+    --shadow: 0 16px 34px -22px rgba(0,0,0,0.7);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    background-color:var(--paper);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    background-blend-mode:overlay;
+    background-size:180px 180px;
+    color:var(--ink);
+    font-family:"Work Sans", -apple-system, "Segoe UI", sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    padding-inline:24px;
+  }
+  h1,h2,h3{
+    font-family:"Fraunces", Georgia, "Iowan Old Style", serif;
+    color:var(--ink);
+    text-wrap:balance;
+    margin:0;
+    font-weight:600;
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  img{max-width:100%;}
+  .wrap{max-width:1180px;margin-inline:auto;}
+  em{font-style:italic;color:var(--stamp);}
+  .mono{font-family:"IBM Plex Mono", ui-monospace, monospace;}
+
+  .eyebrow{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--teal);
+    font-weight:500;
+  }
+
+  /* ---------- perforated divider ---------- */
+  .perf{
+    border-top:3px dotted var(--line);
+    opacity:0.75;
+  }
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky; top:0; z-index:40;
+    background:var(--paper);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-row{
+    max-width:1180px;margin-inline:auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding-block:14px;
+    gap:20px;
+  }
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none; flex:none;}
+  .brand svg{flex:none;}
+  .brand-text{display:flex; flex-direction:column; line-height:1.15;}
+  .logo{
+    font-family:"Fraunces", serif;
+    font-weight:700;
+    font-size:1.2rem;
+    color:var(--ink);
+  }
+  .brand-text .est{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.6rem;
+    font-weight:500;
+    letter-spacing:0.14em;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+  }
+  nav.links{
+    display:flex; gap:26px; list-style:none; margin:0; padding:0;
+    font-size:0.9rem; font-weight:500;
+  }
+  nav.links a{
+    text-decoration:none; color:var(--ink-soft);
+    padding-block:4px; border-bottom:1px solid transparent;
+    transition:color .15s, border-color .15s;
+  }
+  nav.links a:hover, nav.links a:focus-visible{color:var(--ink); border-color:var(--stamp);}
+  .cta{
+    font-family:"IBM Plex Mono", monospace;
+    font-weight:500; font-size:0.82rem; letter-spacing:0.02em;
+    background:var(--ink); color:var(--paper);
+    border:1px solid var(--ink);
+    padding:10px 18px; border-radius:2px;
+    text-decoration:none; white-space:nowrap;
+    transition:transform .15s, box-shadow .15s;
+    flex:none;
+  }
+  .cta:hover{transform:translateY(-1px); box-shadow:var(--shadow);}
+  .cta.ghost{background:transparent; color:var(--ink); border-color:var(--line);}
+  .menu-btn{
+    display:none; background:none; border:1px solid var(--line);
+    border-radius:2px; width:38px; height:38px; flex:none;
+    color:var(--ink); font-size:1.05rem; cursor:pointer;
+  }
+  .mobile-links{display:none;}
+  @media (max-width: 860px){
+    nav.links{display:none;}
+    .menu-btn{display:block;}
+    header.site.open .mobile-links{
+      display:flex; flex-direction:column; gap:2px;
+      padding-block:6px 16px;
+      border-top:1px dotted var(--line);
+    }
+    .mobile-links a{
+      text-decoration:none; color:var(--ink-soft); font-size:0.96rem;
+      padding:10px 4px; border-bottom:1px dotted var(--line-soft);
+    }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative; padding-block:56px 0; overflow:hidden;}
+  .hero-art{position:absolute; inset:0; z-index:0; pointer-events:none;}
+  .hero-compass{position:absolute; top:8px; right:28px; width:160px; z-index:0; pointer-events:none;}
+  @media (max-width:1180px){.hero-compass{display:none;}}
+  .needle{transform-box:fill-box; transform-origin:center; animation:settle 7s ease-in-out infinite;}
+  @keyframes settle{0%,100%{transform:rotate(-4deg);}50%{transform:rotate(5deg);}}
+  .hero-inner{position:relative; z-index:1; max-width:640px;}
+  .coord{margin-bottom:16px;}
+  .hero h1{
+    font-size:clamp(2.1rem, 4.4vw, 3.5rem);
+    line-height:1.1;
+  }
+  .hero-sub{margin-top:20px; max-width:52ch; font-size:1.06rem; color:var(--ink-soft);}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-top:32px;}
+
+  .stat-row{
+    margin-top:52px;
+    display:flex; flex-wrap:wrap;
+    border-top:1px dashed var(--line);
+    border-bottom:1px dashed var(--line);
+    position:relative; z-index:1;
+  }
+  .stat{
+    flex:1 1 150px; padding:16px 22px 16px 0;
+    border-right:1px dashed var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat b{
+    font-family:"Fraunces", serif; font-weight:600; font-size:1.55rem;
+    display:block; font-variant-numeric:tabular-nums;
+  }
+  .stat small{
+    font-family:"IBM Plex Mono", monospace;
+    color:var(--ink-faint); font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase;
+  }
+
+  /* ---------- Sections ---------- */
+  section.block{padding-block:72px;}
+  .head{
+    display:grid; grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);
+    gap:56px; align-items:start;
+  }
+  .head h2{font-size:clamp(1.65rem,2.8vw,2.3rem); margin-top:12px;}
+  .head .lede{margin-top:16px; color:var(--ink-soft); font-size:1.02rem; max-width:56ch;}
+  @media (max-width:820px){.head{grid-template-columns:1fr; gap:26px;}}
+
+  /* ---------- Mission facts ---------- */
+  .fact-box{
+    margin-top:26px; padding-top:18px; border-top:1px dashed var(--line);
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .fact{display:flex; gap:12px; align-items:flex-start; font-size:0.94rem;}
+  .fact svg{flex:none; margin-top:2px; color:var(--stamp);}
+  .fact b{display:block; font-family:"IBM Plex Mono",monospace; font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); font-weight:500; margin-bottom:2px;}
+
+  /* ---------- Stamps (values) ---------- */
+  .stamps{display:flex; flex-wrap:wrap; gap:22px 18px; padding-top:6px;}
+  .stamp-item{display:flex; align-items:center; gap:18px; flex:1 1 240px;}
+  .stamp-item:nth-child(2){margin-top:22px;}
+  .stamp-item:nth-child(4){margin-top:-8px;}
+  .stamp{
+    width:88px; height:88px; border-radius:50%; flex:none;
+    border:2px solid var(--stamp);
+    box-shadow:0 0 0 4px var(--paper), 0 0 0 5px var(--stamp);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--stamp); background:transparent;
+  }
+  .stamp-item:nth-child(1) .stamp{transform:rotate(-7deg);}
+  .stamp-item:nth-child(2) .stamp{transform:rotate(5deg);}
+  .stamp-item:nth-child(3) .stamp{transform:rotate(4deg);}
+  .stamp-item:nth-child(4) .stamp{transform:rotate(-5deg);}
+  .stamp span{
+    font-family:"IBM Plex Mono", monospace; text-transform:uppercase;
+    font-size:0.58rem; letter-spacing:0.03em; font-weight:600; text-align:center; padding:6px;
+  }
+  .stamp-item h3{font-size:1.02rem; font-weight:600;}
+  .stamp-item p{margin-top:5px; color:var(--ink-soft); font-size:0.9rem;}
+
+  /* ---------- Itinerary (zigzag route) ---------- */
+  .itinerary{margin-top:8px; position:relative; display:flex; flex-direction:column; gap:0;}
+  .itinerary::before{
+    content:""; position:absolute; left:50%; top:6px; bottom:6px; width:0;
+    border-left:2px dashed var(--line); transform:translateX(-1px);
+  }
+  .i-row{display:grid; grid-template-columns:1fr 40px 1fr; padding-block:20px;}
+  .i-row .i-text{padding:2px 26px;}
+  .i-row .pin{
+    grid-column:2; justify-self:center; align-self:start; margin-top:2px;
+    width:16px; height:16px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--stamp); position:relative; z-index:1;
+  }
+  .i-row:nth-child(odd) .i-text{grid-column:1; text-align:right;}
+  .i-row:nth-child(even) .i-text{grid-column:3; text-align:left;}
+  .i-num{
+    font-family:"IBM Plex Mono", monospace; font-size:0.7rem; color:var(--stamp);
+    letter-spacing:0.05em;
+  }
+  .i-row h3{font-size:1.02rem; font-weight:600; margin-top:4px;}
+  .i-row p{margin-top:5px; color:var(--ink-soft); font-size:0.92rem;}
+  @media (max-width:680px){
+    .itinerary::before{left:19px;}
+    .i-row{grid-template-columns:40px 1fr; padding-block:16px;}
+    .i-row .pin{grid-column:1;}
+    .i-row:nth-child(odd) .i-text, .i-row:nth-child(even) .i-text{grid-column:2; text-align:left;}
+  }
+
+  /* ---------- Tour gallery ---------- */
+  .tour-gallery{margin-top:44px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .tour-gallery figure{margin:0;}
+  .tour-gallery img{width:100%; height:170px; object-fit:cover; border-radius:2px; box-shadow:var(--shadow); display:block;}
+  .tour-gallery figcaption{
+    margin-top:8px; font-family:"IBM Plex Mono",monospace; font-size:0.68rem;
+    letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-faint);
+  }
+  @media (max-width:820px){.tour-gallery{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:480px){.tour-gallery{grid-template-columns:1fr;}}
+
+  .compare-title{margin-top:56px; font-size:1.08rem; font-weight:600; font-family:"Fraunces", serif;}
+  .compare{margin-top:20px; border:1px solid var(--line);}
+  .compare-head{display:grid; grid-template-columns:1fr 1fr; font-family:"IBM Plex Mono",monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:500;}
+  .compare-head div{padding:11px 20px;}
+  .compare-head .old{color:var(--ink-faint);}
+  .compare-head .new{color:var(--stamp); position:relative;}
+  .compare-head .new::after{
+    content:"MỚI"; position:absolute; top:-11px; right:18px;
+    background:var(--stamp); color:var(--stamp-ink); font-size:0.6rem; font-weight:600;
+    padding:3px 8px; border-radius:2px; transform:rotate(3deg); box-shadow:var(--shadow); letter-spacing:0.04em;
+  }
+  .compare-row{display:grid; grid-template-columns:1fr 1fr; border-top:1px dotted var(--line);}
+  .compare-row div{padding:15px 20px; font-size:0.92rem;}
+  .compare-row .old{color:var(--ink-faint); border-right:1px dotted var(--line);}
+  .compare-row .new{color:var(--ink);}
+  @media (max-width:700px){
+    .compare-head, .compare-row{grid-template-columns:1fr;}
+    .compare-row .old{border-right:none; border-bottom:1px dotted var(--line);}
+  }
+
+  /* ---------- Offers (coupon stubs) ---------- */
+  .offer-grid{margin-top:40px; display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  @media (max-width:960px){.offer-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.offer-grid{grid-template-columns:1fr;}}
+  .offer{
+    background:var(--surface); border:1px solid var(--line-soft);
+    display:flex; flex-direction:column;
+    box-shadow:var(--shadow);
+  }
+  .offer.featured{grid-column:span 2;}
+  @media (max-width:560px){.offer.featured{grid-column:span 1;}}
+  .offer .stub{
+    height:56px; display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:0 18px; border-bottom:2px dashed var(--line); position:relative;
+  }
+  .offer .stub::before, .offer .stub::after{
+    content:""; position:absolute; bottom:-7px; width:14px; height:14px; border-radius:50%;
+    background:var(--paper);
+  }
+  .offer .stub::before{left:10px;}
+  .offer .stub::after{right:10px;}
+  .offer .tag{
+    font-family:"IBM Plex Mono",monospace; font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--stamp); font-weight:600;
+  }
+  .offer .body{padding:18px; display:flex; flex-direction:column; gap:8px; flex:1;}
+  .offer h3{font-size:1rem; font-weight:600; line-height:1.3;}
+  .offer p{color:var(--ink-soft); font-size:0.88rem;}
+  .offer-img{width:100%; height:130px; object-fit:cover; display:block; border-bottom:1px dashed var(--line);}
+  .offer-img-pair{display:flex; gap:2px; border-bottom:1px dashed var(--line);}
+  .offer-img-pair img{width:50%; height:130px; object-fit:cover; display:block;}
+
+  /* ---------- CSKH ---------- */
+  .cskh-grid{margin-top:40px; display:grid; grid-template-columns:repeat(3,1fr); gap:28px 36px;}
+  @media (max-width:820px){.cskh-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.cskh-grid{grid-template-columns:1fr;}}
+  .cs-item{display:flex; gap:14px; align-items:flex-start; border-top:1px dotted var(--line); padding-top:16px;}
+  .cs-item .icon{width:30px; height:30px; flex:none; color:var(--teal); display:flex; align-items:center; justify-content:center; border:1px solid var(--line); border-radius:2px; margin-top:2px;}
+  .cs-item h3{font-size:0.96rem; font-weight:600;}
+  .cs-item p{margin-top:5px; color:var(--ink-soft); font-size:0.87rem;}
+
+  .hotline-strip{
+    margin-top:48px; display:flex; flex-wrap:wrap; gap:22px 32px;
+    align-items:center; justify-content:space-between;
+    background:var(--ink); color:var(--paper);
+    padding:24px 28px;
+  }
+  .hotline-strip .h-label{font-family:"IBM Plex Mono",monospace; font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; opacity:0.7;}
+  .hotline-strip .h-value{font-family:"Fraunces", serif; font-size:1.3rem; margin-top:4px; font-variant-numeric:tabular-nums;}
+  .hotline-strip .h-note{font-size:0.8rem; opacity:0.72; max-width:30ch;}
+
+  /* ---------- Footer ---------- */
+  footer{padding-block:52px 36px;}
+  .foot-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:36px;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr; gap:28px;}}
+  .foot-grid h4{font-family:"IBM Plex Mono",monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-faint); font-weight:500; margin-bottom:12px;}
+  .foot-grid ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+  .foot-grid a{text-decoration:none; color:var(--ink-soft); font-size:0.9rem;}
+  .foot-grid a:hover{color:var(--stamp);}
+  .foot-bottom{
+    margin-top:40px; padding-top:18px; border-top:1px dotted var(--line);
+    display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+    font-family:"IBM Plex Mono",monospace; font-size:0.74rem; color:var(--ink-faint);
+  }
+  .disclaimer{margin-top:14px; font-size:0.78rem; color:var(--ink-faint); max-width:70ch; line-height:1.6;}
+</style>
+
+<header class="site" id="siteHeader">
+  <div class="nav-row wrap">
+    <a class="brand" href="#top">
+      <img src="images/logo-neo-viet.png" alt="Nẻo Việt" width="32" height="32" style="border-radius:50%;object-fit:cover;flex:none;">
+      <span class="brand-text"><span class="logo">Nẻo Việt</span><span class="est">Est. 2005 · Nha Trang</span></span>
+    </a>
+    <nav class="links">
+      <a href="#gioi-thieu">Về chúng tôi</a>
+      <a href="#tour-moi">Trải nghiệm mới</a>
+      <a href="#uu-dai">Ưu đãi</a>
+      <a href="#cskh">Chăm sóc khách hàng</a>
+      <a href="#lien-he">Liên hệ</a>
+    </nav>
+    <a class="cta" href="#lien-he">ĐẶT TƯ VẤN</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Mở menu" aria-expanded="false">☰</button>
+  </div>
+  <div class="mobile-links wrap">
+    <a href="#gioi-thieu">Về chúng tôi</a>
+    <a href="#tour-moi">Trải nghiệm mới</a>
+    <a href="#uu-dai">Ưu đãi</a>
+    <a href="#cskh">Chăm sóc khách hàng</a>
+    <a href="#lien-he">Liên hệ</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <svg class="hero-art" viewBox="0 0 1200 620" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path d="M-20,470 C160,430 300,500 460,460 C620,420 720,490 880,450 C1000,420 1100,460 1220,440" fill="none" stroke="var(--teal)" stroke-width="1.4" opacity="0.28"/>
+      <path d="M-20,510 C170,480 320,530 480,495 C640,460 760,520 900,490 C1020,470 1120,500 1220,485" fill="none" stroke="var(--teal)" stroke-width="1.4" opacity="0.22"/>
+      <path d="M-20,550 C180,525 340,560 500,530 C660,500 780,545 910,522 C1030,505 1120,530 1220,520" fill="none" stroke="var(--teal)" stroke-width="1.4" opacity="0.16"/>
+    </svg>
+    <svg class="hero-compass" viewBox="0 0 220 160" aria-hidden="true">
+      <path d="M56,80 C100,64 130,100 178,56" fill="none" stroke="var(--stamp)" stroke-width="1.6" stroke-dasharray="1 8" stroke-linecap="round" opacity="0.75"/>
+      <circle cx="56" cy="80" r="32" fill="none" stroke="var(--ink)" stroke-width="1.3" opacity="0.7"/>
+      <path d="M56 54v7M56 99v7M27 80h7M78 80h7" stroke="var(--ink)" stroke-width="1.3" opacity="0.7"/>
+      <g class="needle">
+        <path d="M56 80 L62 69 L56 64 Z" fill="var(--stamp)"/>
+        <path d="M56 80 L50 91 L56 96 Z" fill="var(--ink)"/>
+      </g>
+      <circle cx="56" cy="80" r="3.5" fill="var(--ink)"/>
+      <text x="16" y="126" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="0.5" fill="var(--ink-faint)">NHA TRANG</text>
+      <circle cx="178" cy="56" r="5" fill="var(--stamp)"/>
+      <text x="34" y="40" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="0.5" fill="var(--stamp)">BUÔN MA THUỘT</text>
+    </svg>
+    <div class="wrap hero-inner">
+      <p class="eyebrow coord">12.2388°N, 109.1967°E — NHA TRANG, KHÁNH HOÀ</p>
+      <h1>Theo dấu đất, tìm hồn Việt trên mọi <em>nẻo</em> đường</h1>
+      <p class="hero-sub">Nẻo Việt là công ty du lịch nội địa thành lập năm 2005 tại Nha Trang, đưa du khách Việt lên hành trình Nha Trang – Buôn Ma Thuột 3 ngày 2 đêm — nơi văn hoá cà phê, cacao, nhà sàn và cồng chiêng Tây Nguyên hoà cùng dịch vụ an toàn, tận tâm và giàu trải nghiệm.</p>
+      <div class="hero-ctas">
+        <a class="cta" href="#tour-moi">Khám phá hành trình mới</a>
+        <a class="cta ghost" href="#lien-he">Liên hệ tư vấn</a>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="stat-row">
+        <div class="stat"><b>2005</b><small>Năm thành lập</small></div>
+        <div class="stat"><b>3N2Đ</b><small>Thời lượng hành trình</small></div>
+        <div class="stat"><b>180km</b><small>Nha Trang – Buôn Ma Thuột</small></div>
+        <div class="stat"><b>10+</b><small>Điểm trải nghiệm văn hoá</small></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perf wrap"></div>
+
+  <section class="block" id="gioi-thieu">
+    <div class="wrap head">
+      <div>
+        <p class="eyebrow">Về Nẻo Việt</p>
+        <h2>Mục tiêu của chúng tôi</h2>
+        <p class="lede">Thành lập năm 2005 tại Nha Trang, “Nẻo Việt” gợi đến những con đường dẫn tới các vùng đất khác nhau của Việt Nam — mỗi chuyến đi là một hành trình khám phá một “nẻo” mới. Với slogan “Theo dấu đất – Tìm hồn Việt”, chúng tôi mang đến những chuyến đi an toàn, chất lượng, đưa du khách khám phá vẻ đẹp, văn hoá và con người Việt Nam, đồng thời góp phần phát triển du lịch bền vững tại các cộng đồng địa phương.</p>
+        <div class="fact-box">
+          <div class="fact">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.6 7-12a7 7 0 1 0-14 0c0 5.4 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+            <div><b>Địa chỉ</b>43 Quang Trung, Nha Trang, Khánh Hoà, Việt Nam</div>
+          </div>
+          <div class="fact">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="16" rx="1.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>
+            <div><b>Thành lập</b>2005 — đồng hành cùng du khách Việt đến nay</div>
+          </div>
+        </div>
+      </div>
+      <div class="stamps">
+        <div class="stamp-item">
+          <div class="stamp"><span>An<br>Toàn</span></div>
+          <div><h3>An toàn &amp; chất lượng</h3><p>Mang đến những chuyến đi an toàn, chất lượng và đáng nhớ cho người Việt.</p></div>
+        </div>
+        <div class="stamp-item">
+          <div class="stamp"><span>Riêng<br>Biệt</span></div>
+          <div><h3>Cá nhân hoá</h3><p>Thiết kế hành trình phù hợp với từng nhóm khách hàng và nhu cầu thực tế.</p></div>
+        </div>
+        <div class="stamp-item">
+          <div class="stamp"><span>Chân<br>Thực</span></div>
+          <div><h3>Chân thực</h3><p>Đưa du khách khám phá vẻ đẹp, văn hoá và con người Việt Nam qua trải nghiệm địa phương chân thực.</p></div>
+        </div>
+        <div class="stamp-item">
+          <div class="stamp"><span>Bền<br>Vững</span></div>
+          <div><h3>Bền vững</h3><p>Góp phần phát triển du lịch bền vững và quảng bá giá trị Việt Nam.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perf wrap"></div>
+
+  <section class="block" id="tour-moi">
+    <div class="wrap">
+      <div class="head" style="margin-bottom:8px;">
+        <div>
+          <p class="eyebrow">Hành trình mới ra mắt</p>
+          <h2>Tour Nha Trang – Buôn Ma Thuột (3N2Đ)</h2>
+          <p class="lede">Thiết kế dành cho khách 30–50 tuổi và các gia đình có trẻ nhỏ tại Nha Trang, hành trình 3 ngày 2 đêm đưa du khách từ phố biển lên cao nguyên Buôn Ma Thuột — nơi văn hoá cà phê, cacao, nhà sàn và cồng chiêng Tây Nguyên hoà cùng những dấu ấn lịch sử, cùng hướng dẫn viên song ngữ đồng hành suốt tuyến.</p>
+        </div>
+        <div class="itinerary">
+          <div class="i-row"><div class="i-text"><span class="i-num">01</span><h3>Khởi hành từ Nha Trang</h3><p>Tập trung tại Bến xe phía Bắc, nhận Travel Kit “Bạn Đồng Hành” và khởi hành theo Quốc lộ 26 lên Buôn Ma Thuột.</p></div><div class="pin"></div><div></div></div>
+          <div class="i-row"><div></div><div class="pin"></div><div class="i-text"><span class="i-num">02</span><h3>Buôn Đôn &amp; VQG Yok Đôn</h3><p>Tìm hiểu văn hoá voi Tây Nguyên, viếng Mộ Vua Voi và khám phá Vườn quốc gia Yok Đôn.</p></div></div>
+          <div class="i-row"><div class="i-text"><span class="i-num">03</span><h3>Trang trại Cacao Nam Trường Sơn</h3><p>Trải nghiệm hái cacao, tìm hiểu quy trình lên men, rang và tự tay làm chocolate.</p></div><div class="pin"></div><div></div></div>
+          <div class="i-row"><div></div><div class="pin"></div><div class="i-text"><span class="i-num">04</span><h3>Làng Cà phê Trung Nguyên</h3><p>Tham quan không gian kiến trúc, tìm hiểu văn hoá cà phê Buôn Ma Thuột và thưởng thức cà phê tại chỗ.</p></div></div>
+          <div class="i-row"><div class="i-text"><span class="i-num">05</span><h3>Nhà sàn &amp; đêm giao lưu văn hoá</h3><p>Lưu trú nhà sàn, thưởng thức cơm lam, xem trình diễn cồng chiêng, múa xoang cùng nghệ nhân địa phương.</p></div><div class="pin"></div><div></div></div>
+          <div class="i-row"><div></div><div class="pin"></div><div class="i-text"><span class="i-num">06</span><h3>Dấu ấn lịch sử &amp; trở về</h3><p>Tham quan Nhà đày Buôn Ma Thuột, Bảo tàng Đắk Lắk trước khi trở về Nha Trang theo Quốc lộ 26.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tour-gallery">
+        <figure><img src="images/gallery-kotam.jpg" alt="Khu du lịch sinh thái Ko Tam" loading="lazy"><figcaption>Khu du lịch sinh thái Ko Tam</figcaption></figure>
+        <figure><img src="images/gallery-cacao.jpg" alt="Trang trại Cacao Nam Trường Sơn" loading="lazy"><figcaption>Trang trại Cacao Nam Trường Sơn</figcaption></figure>
+        <figure><img src="images/gallery-baodai.jpg" alt="Biệt Điện Bảo Đại" loading="lazy"><figcaption>Biệt Điện Bảo Đại</figcaption></figure>
+        <figure><img src="images/gallery-congchieng.jpg" alt="Trình diễn cồng chiêng Tây Nguyên" loading="lazy"><figcaption>Đêm giao lưu cồng chiêng</figcaption></figure>
+        <figure><img src="images/gallery-baotang.jpg" alt="Bảo tàng Đắk Lắk" loading="lazy"><figcaption>Bảo tàng Đắk Lắk</figcaption></figure>
+        <figure><img src="images/gallery-nhaday.jpg" alt="Di tích Nhà đày Buôn Ma Thuột" loading="lazy"><figcaption>Di tích Nhà đày Buôn Ma Thuột</figcaption></figure>
+      </div>
+
+      <p class="compare-title">Khác biệt so với các tour truyền thống</p>
+      <div class="compare">
+        <div class="compare-head"><div class="old">Trước đây</div><div class="new">Hành trình Nẻo Việt</div></div>
+        <div class="compare-row"><div class="old">Lưu trú khách sạn tiêu chuẩn, không có tương tác với cộng đồng bản địa</div><div class="new">Nhà sàn kết hợp giao lưu văn hoá — cơm lam, cồng chiêng, múa xoang do Nẻo Việt đặt lịch riêng cho đoàn</div></div>
+        <div class="compare-row"><div class="old">Chi phí dịch vụ chủ yếu về tay các doanh nghiệp lớn</div><div class="new">Hợp tác trực tiếp với hộ dân, nghệ nhân địa phương — thu nhập đến tận tay cộng đồng</div></div>
+        <div class="compare-row"><div class="old">Không có quà tặng đồng hành trong suốt chuyến đi</div><div class="new">Travel Kit “Bạn Đồng Hành” — bình nước, khăn giấy ướt, thẻ lịch trình, thẻ tên hành lý</div></div>
+        <div class="compare-row"><div class="old">Chính sách giá trẻ em chung chung, thiếu rõ ràng</div><div class="new">Chính sách giá trẻ em theo chiều cao: dưới 1m (75%), 1–1,4m (90%), trên 1,4m (100%)</div></div>
+        <div class="compare-row"><div class="old">Lịch trình cố định, ít gắn với câu chuyện văn hoá – lịch sử địa phương</div><div class="new">Lồng ghép trải nghiệm cà phê, cacao, cồng chiêng và di tích Nhà đày, Bảo tàng Đắk Lắk xuyên suốt hành trình</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perf wrap"></div>
+
+  <section class="block" id="uu-dai">
+    <div class="wrap">
+      <p class="eyebrow">Ưu đãi</p>
+      <h2>Ưu đãi &amp; quyền lợi khách hàng</h2>
+      <p class="lede" style="margin-top:16px;">Nẻo Việt xây dựng các chương trình ưu đãi thiết thực dành cho khách đăng ký tour Nha Trang – Buôn Ma Thuột, từ nhóm đông, thành viên thân thiết đến những món quà lưu niệm mang đậm dấu ấn Tây Nguyên.</p>
+      <div class="offer-grid">
+        <div class="offer featured">
+          <div class="stub"><span class="tag">Gia đình rủ gia đình</span></div>
+          <div class="body"><h3>Chương trình giới thiệu</h3><p>Từ 2 gia đình đăng ký cùng chuyến, khách nhận quà tặng hoặc ưu đãi dịch vụ — “Cùng gia đình bạn, tạo nên một chuyến đi đáng nhớ”.</p></div>
+        </div>
+        <div class="offer">
+          <div class="stub"><span class="tag">Đoàn đông</span></div>
+          <div class="body"><h3>Giảm giá nhóm</h3><p>Ưu đãi hấp dẫn dành cho đoàn đăng ký đông người trong cùng một chuyến.</p></div>
+        </div>
+        <div class="offer">
+          <div class="stub"><span class="tag">Thành viên</span></div>
+          <img class="offer-img" src="images/voucher.jpg" alt="Voucher ưu đãi Nẻo Việt" loading="lazy">
+          <div class="body"><h3>Tích điểm thành viên</h3><p>Tích luỹ điểm sau mỗi chuyến đi, đổi voucher giảm giá cho lần đặt tour tiếp theo.</p></div>
+        </div>
+        <div class="offer">
+          <div class="stub"><span class="tag">Tri ân</span></div>
+          <div class="body"><h3>Quà tặng dịp lễ</h3><p>Quà đặc biệt vào các ngày lễ, sinh nhật và dịp kỷ niệm của khách hàng.</p></div>
+        </div>
+        <div class="offer">
+          <div class="stub"><span class="tag">Đồng hành</span></div>
+          <img class="offer-img" src="images/travel-kit.jpg" alt="Travel Kit Bạn Đồng Hành" loading="lazy">
+          <div class="body"><h3>Travel Kit "Bạn Đồng Hành"</h3><p>Bình nước cá nhân, khăn giấy ướt, thẻ lịch trình mini và thẻ tên hành lý chống thất lạc.</p></div>
+        </div>
+        <div class="offer">
+          <div class="stub"><span class="tag">Lưu niệm</span></div>
+          <div class="offer-img-pair">
+            <img src="images/souvenir-tui-thom.jpg" alt="Túi thơm cà phê Buôn Ma Thuột" loading="lazy">
+            <img src="images/souvenir-moc-khoa.jpg" alt="Móc khoá voi Buôn Đôn" loading="lazy">
+          </div>
+          <div class="body"><h3>Quà lưu niệm Tây Nguyên</h3><p>Túi thơm cà phê Buôn Ma Thuột và móc khoá hình voi Buôn Đôn, mang thương hiệu Nẻo Việt.</p></div>
+        </div>
+        <div class="offer">
+          <div class="stub"><span class="tag">Cá nhân hoá</span></div>
+          <div class="body"><h3>Trải nghiệm riêng cho đoàn</h3><p>Hỗ trợ thiết kế banner/standee check-in và tổ chức sinh nhật bất ngờ cho thành viên.</p></div>
+        </div>
+        <div class="offer">
+          <div class="stub"><span class="tag">Linh hoạt</span></div>
+          <div class="body"><h3>Chính sách đổi/huỷ rõ ràng</h3><p>Quy định minh bạch về phí dời/huỷ tour; hỗ trợ bảo lưu hoặc hoàn tiền khi có sự kiện bất khả kháng.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="perf wrap"></div>
+
+  <section class="block" id="cskh">
+    <div class="wrap">
+      <p class="eyebrow">Chăm sóc khách hàng</p>
+      <h2>Đồng hành cùng bạn, mọi lúc</h2>
+      <p class="lede" style="margin-top:16px;">Từ tư vấn trước chuyến đi đến chăm sóc sau khi kết thúc tour, đội ngũ Nẻo Việt đồng hành theo từng giai đoạn để mọi hành trình diễn ra suôn sẻ và trọn vẹn.</p>
+      <div class="cskh-grid">
+        <div class="cs-item"><div class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2C10 21 3 14 3 6a2 2 0 0 1 2-2Z"/></svg></div><div><h3>Tư vấn &amp; thiết kế riêng</h3><p>Xác định nhu cầu của từng đoàn để xây dựng lịch trình phù hợp ngân sách, hỗ trợ trọn gói thủ tục trước ngày đi.</p></div></div>
+        <div class="cs-item"><div class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div><h3>Hợp đồng minh bạch</h3><p>Ký hợp đồng rõ ràng, cung cấp thông tin thời tiết, danh mục đồ dùng và lịch trình chi tiết trước chuyến đi.</p></div></div>
+        <div class="cs-item"><div class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.5-4 4-5.5 7-5.5s5.5 1.5 7 5.5"/></svg></div><div><h3>Hỗ trợ 24/7 xuyên suốt</h3><p>Đường dây nóng và nhân sự chuyên trách xử lý ngay các sự cố phát sinh trong hành trình.</p></div></div>
+        <div class="cs-item"><div class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6.5v5c0 5 3.4 8.4 8 9.5 4.6-1.1 8-4.5 8-9.5v-5Z"/></svg></div><div><h3>Cá nhân hoá trải nghiệm</h3><p>Hỗ trợ thiết kế banner/standee check-in và tổ chức các sự kiện đặc biệt cho đoàn.</p></div></div>
+        <div class="cs-item"><div class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5c2.4 2.4 3.6 5.4 3.6 8.5s-1.2 6.1-3.6 8.5M12 3.5c-2.4 2.4-3.6 5.4-3.6 8.5s1.2 6.1 3.6 8.5M4 12h16"/></svg></div><div><h3>Lắng nghe sau chuyến đi</h3><p>Khảo sát và tiếp nhận phản hồi từ đoàn ngay sau tour để nâng cao chất lượng dịch vụ.</p></div></div>
+        <div class="cs-item"><div class="icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 1 1 3 6.2M4 12v5h5"/></svg></div><div><h3>Xử lý khiếu nại trong 24h</h3><p>Tiếp nhận và phản hồi mọi đóng góp, phàn nàn, đảm bảo quyền lợi tối đa cho khách hàng.</p></div></div>
+      </div>
+
+      <!-- <div class="hotline-strip">
+        <div><div class="h-label">Hotline hỗ trợ</div><div class="h-value">1900.0264</div></div>
+        <div><div class="h-label">Website</div><div class="h-value" style="font-size:1.05rem;">neoviet.vn</div></div>
+        <div class="h-note">Trang landing page minh hoạ trong khuôn khổ bài tập tiếng Anh thương mại, lấy theo bộ nhận diện Nẻo Việt.</div>
+      </div> -->
+    </div>
+  </section>
+</main>
+
+<footer id="lien-he">
+  <div class="wrap">
+    <div class="perf" style="margin-bottom:40px;"></div>
+    <div class="foot-grid">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+          <img src="images/logo-neo-viet.png" alt="Nẻo Việt" width="38" height="38" style="border-radius:50%;object-fit:cover;">
+          <span class="logo">Nẻo Việt</span>
+        </div>
+        <span class="est mono" style="color:var(--ink-faint); font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase;">Est. 2005 · Nha Trang</span>
+        <p style="color:var(--ink-soft); font-size:0.92rem; max-width:38ch; margin-top:14px;">Nẻo Việt gợi mở những con đường mới để khám phá vẻ đẹp, văn hoá và con người Việt Nam, từ 2005.</p>
+      </div>
+      <div>
+        <h4>Thông tin liên hệ</h4>
+        <ul>
+          <li>Địa chỉ: 43 Quang Trung, Nha Trang, Khánh Hoà</li>
+          <li>Số điện thoại: 1900.0264</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 NẺO VIỆT</span>
+      <span>THEO DẤU ĐẤT – TÌM HỒN VIỆT</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var header = document.getElementById('siteHeader');
+    var btn = document.getElementById('menuBtn');
+    btn.addEventListener('click', function(){
+      var open = header.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? '✕' : '☰';
+    });
+    document.querySelectorAll('.mobile-links a').forEach(function(a){
+      a.addEventListener('click', function(){
+        header.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        btn.textContent = '☰';
+      });
+    });
+  })();
+</script>
